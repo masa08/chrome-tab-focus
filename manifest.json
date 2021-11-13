@@ -1,0 +1,12 @@
+{
+  "name": "Chrome Tab Focus",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "Search results checker by tab click in google chrome",
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search?*"],
+      "js": ["src/index.js"]
+    }
+  ]
+}
