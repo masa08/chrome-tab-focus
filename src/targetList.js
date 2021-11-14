@@ -6,7 +6,7 @@ export class TargetDomList {
   }
 
   prev() {
-    // TODO: リファクタ
+    // TODO: refactor
     if (this.prevIndex === -1) {
       this.prevIndex = this.list.length - 1;
       this.nextIndex = 0;
@@ -18,7 +18,7 @@ export class TargetDomList {
   }
 
   next() {
-    // TODO: リファクタ
+    // TODO: refactor
     if (this.nextIndex === this.list.length) this.nextIndex = 0;
 
     const newTargetDom = this.#getTargetAnchorDom(this.nextIndex);
