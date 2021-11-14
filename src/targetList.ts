@@ -1,7 +1,9 @@
-// import { TargetDomList } from './targetList';
-// TODO: inrotoduce module handler
-class TargetDomList {
-  constructor(list) {
+export class TargetDomList {
+  list: HTMLCollectionOf<Element>;
+  prevIndex: number;
+  nextIndex: number;
+
+  constructor(list: HTMLCollectionOf<Element>) {
     this.list = list;
     this.prevIndex = this.list.length - 1;
     this.nextIndex = 0;
@@ -9,10 +11,7 @@ class TargetDomList {
 
   prev() {
     // TODO: refactor
-    if (this.prevIndex === -1) {
-      this.prevIndex = this.list.length - 1;
-      this.nextIndex = 0;
-    }
+    if (this.prevIndex === -1) this.prevIndex = this.list.length - 1;
 
     const newTargetDom = this.#getTargetAnchorDom(this.prevIndex);
     this.#addFocus(newTargetDom);
@@ -21,7 +20,7 @@ class TargetDomList {
 
   next() {
     // TODO: refactor
-    if (this.nextIndex === this.list.length) this.nextIndex = 0;
+    if (this.nextIndex >= this.list.length) this.nextIndex = 0;
 
     const newTargetDom = this.#getTargetAnchorDom(this.nextIndex);
     this.#addFocus(newTargetDom);
@@ -38,30 +37,12 @@ class TargetDomList {
     this.nextIndex = this.prevIndex + 2;
   }
 
-  #getTargetAnchorDom(index) {
+  #getTargetAnchorDom(index: number) {
     return this.list[index].getElementsByTagName('a')[0];
   }
 
-  #addFocus(target) {
+  #addFocus(target: HTMLAnchorElement) {
     target.setAttribute('class', 'focus-visible');
     target.focus();
   }
 }
-
-const searchResults = document.getElementsByClassName('yuRUbf');
-const targetDomList = new TargetDomList(searchResults);
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Tab' && e.shiftKey) {
-    e.preventDefault();
-
-    targetDomList.prev();
-    return;
-  }
-  if (e.key === 'Tab') {
-    e.preventDefault();
-
-    targetDomList.next();
-    return;
-  }
-});
