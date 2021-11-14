@@ -1,4 +1,5 @@
 const searchResults = document.getElementsByClassName('yuRUbf');
+// TODO: classで管理する
 let nextTargetIndex = 0;
 let prevTargetIndex = searchResults.length;
 
