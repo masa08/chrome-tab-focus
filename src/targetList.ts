@@ -1,48 +1,51 @@
 export class TargetDomList {
-  list: HTMLCollectionOf<Element>;
+  list: HTMLAnchorElement[];
   prevIndex: number;
   nextIndex: number;
 
-  constructor(list: HTMLCollectionOf<Element>) {
+  constructor(list: HTMLAnchorElement[]) {
     this.list = list;
     this.prevIndex = this.list.length - 1;
     this.nextIndex = 0;
   }
 
-  prev() {
-    // TODO: refactor
-    if (this.prevIndex === -1) this.prevIndex = this.list.length - 1;
-
-    const newTargetDom = this.#getTargetAnchorDom(this.prevIndex);
+  prev(): void {
+    const newTargetDom = this.list[this.prevIndex];
     this.#addFocus(newTargetDom);
     this.#movePrev();
   }
 
-  next() {
-    // TODO: refactor
-    if (this.nextIndex >= this.list.length) this.nextIndex = 0;
-
-    const newTargetDom = this.#getTargetAnchorDom(this.nextIndex);
+  next(): void {
+    const newTargetDom = this.list[this.nextIndex];
     this.#addFocus(newTargetDom);
     this.#moveNext();
   }
 
-  #moveNext() {
+  #moveNext(): void {
+    if (this.nextIndex >= this.list.length - 1) {
+      this.#resetIndex();
+      return;
+    }
     this.nextIndex = this.nextIndex + 1;
-    this.prevIndex = this.nextIndex - 2;
+    this.prevIndex =
+      this.nextIndex - 2 === -1 ? this.list.length - 1 : this.nextIndex - 2;
   }
 
-  #movePrev() {
+  #movePrev(): void {
+    if (this.prevIndex <= 0) {
+      this.#resetIndex();
+      return;
+    }
     this.prevIndex = this.prevIndex - 1;
-    this.nextIndex = this.prevIndex + 2;
+    this.nextIndex = this.prevIndex + 2 === 12 ? 0 : this.prevIndex + 2;
   }
 
-  #getTargetAnchorDom(index: number) {
-    return this.list[index].getElementsByTagName('a')[0];
+  #resetIndex(): void {
+    this.prevIndex = this.list.length - 1;
+    this.nextIndex = 0;
   }
 
-  #addFocus(target: HTMLAnchorElement) {
-    target.setAttribute('class', 'focus-visible');
+  #addFocus(target: HTMLAnchorElement): void {
     target.focus();
   }
 }

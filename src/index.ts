@@ -1,7 +1,6 @@
-import { TargetDomList } from './targetList';
+import { targetDomListFactory } from './targetDomListFactory';
 
-const searchResults = document.getElementsByClassName('yuRUbf');
-const targetDomList = new TargetDomList(searchResults);
+const targetDomList = targetDomListFactory();
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Tab' && e.shiftKey) {
