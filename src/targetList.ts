@@ -37,7 +37,8 @@ export class TargetDomList {
       return;
     }
     this.prevIndex = this.prevIndex - 1;
-    this.nextIndex = this.prevIndex + 2 === 12 ? 0 : this.prevIndex + 2;
+    this.nextIndex =
+      this.prevIndex + 2 === this.list.length ? 0 : this.prevIndex + 2;
   }
 
   #resetIndex(): void {
