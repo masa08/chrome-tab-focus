@@ -1,10 +1,10 @@
 export class TargetDomList {
-  list: HTMLAnchorElement[];
+  list: HTMLElement[];
   prevIndex: number;
   currentIndex: number | undefined;
   nextIndex: number;
 
-  constructor(list: HTMLAnchorElement[]) {
+  constructor(list: HTMLElement[]) {
     this.list = list;
     this.prevIndex = this.list.length - 1;
     this.currentIndex = undefined;
@@ -60,7 +60,7 @@ export class TargetDomList {
     this.nextIndex = 0;
   }
 
-  #addFocus(target: HTMLAnchorElement): void {
+  #addFocus(target: HTMLElement): void {
     target.focus();
   }
 }
