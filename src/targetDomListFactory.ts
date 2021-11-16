@@ -3,7 +3,7 @@ import {
   PREV_BUTTON_CLASS,
   SEARCH_RESULT_CLASS,
 } from './constants';
-import { TargetDomList } from './targetList';
+import { TargetDomList } from './targetDomList';
 
 export const targetDomListFactory = () => {
   const searchResults = document.getElementsByClassName(SEARCH_RESULT_CLASS);
