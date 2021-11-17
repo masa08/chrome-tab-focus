@@ -39,7 +39,7 @@ export class TargetDomList {
 
   #isOutOfRange(): boolean {
     if (this.currentIndex === 0) {
-      this.#setIndexForfirstFocus();
+      this.#setIndexForFirstFocus();
       return true;
     }
     if (this.currentIndex === this.list.length - 1) {
@@ -50,7 +50,7 @@ export class TargetDomList {
     return false;
   }
 
-  #setIndexForfirstFocus(): void {
+  #setIndexForFirstFocus(): void {
     this.prevIndex = this.list.length - 1;
     this.nextIndex = 1;
   }
