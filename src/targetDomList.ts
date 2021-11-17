@@ -14,24 +14,24 @@ export class TargetDomList {
   next(): void {
     const newTargetDom = this.list[this.nextIndex];
     this.#addFocus(newTargetDom);
-    this.currentIndex = this.nextIndex;
     this.#moveNext();
   }
 
   prev(): void {
     const newTargetDom = this.list[this.prevIndex];
     this.#addFocus(newTargetDom);
-    this.currentIndex = this.prevIndex;
     this.#movePrev();
   }
 
   #moveNext(): void {
+    this.currentIndex = this.nextIndex;
     if (this.#isOutOfRange()) return;
     this.nextIndex = this.nextIndex + 1;
     this.prevIndex = this.nextIndex - 2;
   }
 
   #movePrev(): void {
+    this.currentIndex = this.prevIndex;
     if (this.#isOutOfRange()) return;
     this.prevIndex = this.prevIndex - 1;
     this.nextIndex = this.prevIndex + 2;
